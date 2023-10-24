@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <title>Registration Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    /* text-align: center; */
+}
+select{
+    width: 165%;
+}
+input , select {
+   
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+button {
+    width: 170%;
+    background-color: #0074cc;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056a6;
+}
+
+        .error {
+            color: red;
+        }
+     h2{
+        text-align: center;
+     }
+     .one{
+        width: 165%;
+     }
+    </style>
+</head>
+
+<body>
+<div class="login-container">
+
+
+    
+        <h2 >Responsive Registration Form</h2>
+    <form action="">
+    <table>
+
+        <tr>
+            <td><i class="fa-solid fa-envelope"></i></td>
+            <td><input type="email" class="one" id="email" pattern=".+@gmail.com" size="30" placeholder ="E-mail" required></td>
+            <td><span id="emailError" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><i class="fa-solid fa-lock"></i></td>
+            <td><input type="password"  class="one"  id="password" minlength="8" pattern="*" placeholder ="password" required></td>
+            <td><span id="emailError" class="error">
+        </tr>
+        <tr>
+            <td><i class="fa-solid fa-lock"></i></td>
+            <td> <input type="password"  class="one"  id="confirmPassword" minlength="8" pattern="*" placeholder ="Re-Type Password" required></td>
+            <td> <span id="confirmPasswordError" class="error"></span>
+        </tr>
+        <tr>
+            <td><i class="fa-solid fa-user"></i></td>
+            <td> <input type="text" id="firstName" placeholder ="First Name" required>
+                <span id="firstNameError" class="error"></span>
+
+                <td><i class="fa-solid fa-user"></i></td>
+                <td> <input type="text" id="LastName" placeholder ="Last Name" required>
+                    <span id="LastNameError" class="error"></span>
+        </tr>
+        <tr>
+            <td><i class="fa-solid fa-mars-and-venus"></i></td>
+            <td>
+                <input type="radio" id="male" name="gender" required>
+                Male
+                <input type="radio" id="female" name="gender" required>
+                Female
+                <span id="genderError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><i class="fa-solid fa-globe"></i></td>
+            <td>
+                <select id="country" required>
+                    <option value="">--Select--</option>
+                    <option value="INADA">INADA</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="UK">UK</option>
+                    <option value="Australia">Australia</option>
+                </select>
+                <span id="countryError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+
+                <input type="checkbox" id="newsletter">
+                <label for="newsletter">I want to receive the newsletter:</label>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+
+                <input type="checkbox" id="terms" required>
+                <label for="terms">I agree with terms and conditions:</label>
+                <span id="termsError" class="error"></span>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+
+                <button type="submit" id="register">Register</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+</div>
+
+<Script>
+    document.getElementById('registrationForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Validate all required fields
+        validateRequiredField('email', 'emailError', 'Please enter a valid email address.');
+        validateRequiredField('password', 'passwordError', 'Please enter a password.');
+        validateRequiredField('confirmPassword', 'confirmPasswordError', 'Please confirm your password.');
+        validateRequiredField('firstName', 'firstNameError', 'Please enter your first name.');
+        validateRequiredField('lastName', 'lastNameError', 'Please enter your last name.');
+        validateRequiredField('gender', 'genderError', 'Please select your gender.');
+        validateRequiredField('country', 'countryError', 'Please select a country.');
+        validateRequiredField('terms', 'termsError', 'Please agree to the terms and conditions.');
+
+        // Other validations and form submission can be added here
+    });
+
+    // Function to validate a required field
+    function validateRequiredField(fieldId, errorId, errorMessage) {
+        var field = document.getElementById(fieldId);
+        var error = document.getElementById(errorId);
+
+        if (field.value.trim() === '') {
+            error.textContent = errorMessage;
+        } else {
+            error.textContent = '';
+        }
+    }
+
+    // Allow only numeric values for mobile number field
+    document.getElementById('mobileNumber').addEventListener('keydown', function (event) {
+        if (!isNumericKey(event.keyCode)) {
+            event.preventDefault();
+        }
+    });
+
+    // Function to check if a key is numeric
+    function isNumericKey(keyCode) {
+        return (keyCode >= 48 && keyCode <= 57) || (keyCode >= 96 && keyCode <= 105);
+    }
+
+</Script>
+</body>
+
+</html>
